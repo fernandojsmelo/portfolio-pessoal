@@ -1,8 +1,10 @@
+import { ExperienceRow } from "@/components/ExperienceRow";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { ProjectCard } from "@/components/ProjectCard";
 import { SectionEyebrow } from "@/components/SectionEyebrow";
 import { SpecRow } from "@/components/SpecRow";
+import { education, experience } from "@/lib/experience";
 import { getAllProjects } from "@/lib/projects";
 import { siteConfig } from "@/lib/site-config";
 
@@ -23,32 +25,36 @@ export default async function Home() {
             §01 SOBRE
           </span>
           <span className="font-mono text-xs tracking-[0.14em] text-line [writing-mode:vertical-rl]">
-            §02 PROJETOS
+            §02 EXPERIÊNCIA
           </span>
           <span className="font-mono text-xs tracking-[0.14em] text-line [writing-mode:vertical-rl]">
-            §03 CONTATO
+            §03 PROJETOS
+          </span>
+          <span className="font-mono text-xs tracking-[0.14em] text-line [writing-mode:vertical-rl]">
+            §04 CONTATO
           </span>
         </aside>
 
         <main id="topo" className="min-w-0 pt-14 pb-10">
           <section className="pt-2">
             <SectionEyebrow>Dossiê Nº 001 / Perfil</SectionEyebrow>
-            <h1 className="max-w-[14ch] text-[clamp(2.1rem,5.4vw,4rem)] leading-[1.05] font-semibold tracking-tight text-balance text-paper">
-              {siteConfig.name} constrói sistemas que{" "}
-              <em className="font-medium text-signal italic">sobrevivem</em> à produção.
+            <h1 className="max-w-[16ch] text-[clamp(2.1rem,5.4vw,4rem)] leading-[1.05] font-semibold tracking-tight text-balance text-paper">
+              {siteConfig.name} constrói sistemas web{" "}
+              <em className="font-medium text-signal italic">de ponta a ponta</em>.
             </h1>
             <p className="mt-5.5 max-w-[52ch] text-lg text-paper/85">
-              Engenheiro de software com foco em ferramentas de linha de comando,
-              integrações de API e infraestrutura que outros times dependem sem
-              perceber.
+              Desenvolvedor full stack com base em Java, Python e React/Next.js — da
+              estruturação de bancos de dados às interfaces que os consomem.
+              Trajetória iniciada em suporte e manutenção de TI, consolidada nos
+              últimos anos com estudo técnico intensivo por conta própria.
             </p>
             <p className="mt-8 flex flex-wrap gap-4.5 font-mono text-sm text-muted">
               <span>
-                <b className="font-medium text-paper">Base:</b> Brasil
+                <b className="font-medium text-paper">Base:</b> {siteConfig.location}
               </span>
               <span>
-                <b className="font-medium text-paper">Stack:</b> TypeScript · Node ·
-                Python
+                <b className="font-medium text-paper">Stack:</b> Java · Python ·
+                React/Next.js
               </span>
               <span>
                 <b className="font-medium text-paper">GitHub:</b> @{siteConfig.githubUser}
@@ -74,22 +80,38 @@ export default async function Home() {
             <SectionEyebrow>§01 — Sobre</SectionEyebrow>
             <div className="grid grid-cols-1 gap-7 md:grid-cols-[1.1fr_0.9fr]">
               <p className="max-w-[60ch] text-paper/90">
-                Trabalho na fronteira entre ferramentas de desenvolvedor e sistemas
-                de produção — o tipo de código que precisa funcionar às 3h da manhã
-                sem ninguém de plantão. Prefiro projetos onde a decisão técnica
-                importa mais do que a quantidade de features.
+                Comecei em manutenção e suporte de TI, e nos últimos anos fiz a
+                transição para desenvolvimento full stack por conta própria — mais
+                de 460 horas de cursos concluídos em Java, React/Next.js, bancos de
+                dados e lógica de programação. Hoje atuo em sistemas web de ponta a
+                ponta, da estruturação de bancos de dados à criação de rotinas de
+                análise de dados.
               </p>
               <dl className="border-t border-line font-mono text-sm">
-                <SpecRow k="Foco atual" v="Infra & DX" />
+                <SpecRow k="Cargo atual" v={siteConfig.role} />
+                <SpecRow k="Empresa atual" v="Smart Data Solutions" />
                 <SpecRow k="Projetos públicos" v={String(projects.length)} />
-                <SpecRow k="Linguagem principal" v="TypeScript" />
                 <SpecRow k="Disponibilidade" v="Aberto a propostas" />
               </dl>
             </div>
           </section>
 
+          <section id="experiencia" className="mt-22 scroll-mt-8">
+            <SectionEyebrow>§02 — Experiência</SectionEyebrow>
+            <div>
+              {experience.map((entry) => (
+                <ExperienceRow key={`${entry.company}-${entry.period}`} {...entry} />
+              ))}
+            </div>
+            <dl className="mt-7 border-t border-line font-mono text-sm">
+              <SpecRow k="Formação" v={education.course} />
+              <SpecRow k="Instituição" v={education.institution} />
+              <SpecRow k="Situação" v={education.status} />
+            </dl>
+          </section>
+
           <section id="projetos" className="mt-22 scroll-mt-8">
-            <SectionEyebrow>§02 — Projetos em destaque</SectionEyebrow>
+            <SectionEyebrow>§03 — Projetos em destaque</SectionEyebrow>
             {featured.length > 0 ? (
               <div className="grid gap-px border border-line bg-line [grid-template-columns:repeat(auto-fit,minmax(280px,1fr))]">
                 {featured.map((project, index) => (
@@ -104,7 +126,7 @@ export default async function Home() {
           </section>
 
           <section id="contato" className="mt-22 mb-10 scroll-mt-8">
-            <SectionEyebrow>§03 — Contato</SectionEyebrow>
+            <SectionEyebrow>§04 — Contato</SectionEyebrow>
             <div className="flex flex-col gap-6 border border-line p-8 sm:flex-row sm:items-center sm:justify-between">
               <h2 className="max-w-[16ch] font-display text-2xl font-semibold text-balance text-paper">
                 Interessado em conversar sobre um projeto?

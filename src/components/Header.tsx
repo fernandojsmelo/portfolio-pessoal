@@ -11,11 +11,14 @@ export function Header() {
         <a href="#sobre" className="text-muted transition-colors hover:text-signal">
           §01 SOBRE
         </a>
+        <a href="#experiencia" className="text-muted transition-colors hover:text-signal">
+          §02 EXPERIÊNCIA
+        </a>
         <a href="#projetos" className="text-muted transition-colors hover:text-signal">
-          §02 PROJETOS
+          §03 PROJETOS
         </a>
         <a href="#contato" className="text-muted transition-colors hover:text-signal">
-          §03 CONTATO
+          §04 CONTATO
         </a>
       </nav>
     </div>
