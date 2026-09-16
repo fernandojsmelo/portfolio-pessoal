@@ -136,7 +136,7 @@ export default async function Home() {
                   href={`mailto:${siteConfig.email}`}
                   className="text-paper transition-colors hover:text-signal"
                 >
-                  → E-mail
+                  → E-mail <span className="text-muted">{siteConfig.email}</span>
                 </a>
                 <a
                   href={siteConfig.githubUrl}
@@ -152,7 +152,7 @@ export default async function Home() {
                   rel="noreferrer"
                   className="text-paper transition-colors hover:text-signal"
                 >
-                  → LinkedIn
+                  → LinkedIn <span className="text-muted">@{siteConfig.linkedinUser}</span>
                 </a>
               </div>
             </div>
