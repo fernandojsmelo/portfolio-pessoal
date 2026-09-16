@@ -3,5 +3,5 @@ export const siteConfig = {
   githubUser: "fernandojsmelo",
   githubUrl: "https://github.com/fernandojsmelo",
   email: "fernandojsmelo@gmail.com",
-  linkedinUrl: "https://www.linkedin.com/in/fernandojsmel",
+  linkedinUrl: "https://www.linkedin.com/in/fernandojsmelo",
 };
