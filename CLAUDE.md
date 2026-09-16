@@ -2,10 +2,15 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+@AGENTS.md
+
 ## Estado do projeto
 
-Este repositório ainda não foi scaffolded — não há `package.json` nem
-código-fonte. O que existe hoje:
+Scaffold inicial (Fase 0 do `PLANO_IMPLEMENTACAO.md`) já feito via
+`create-next-app` (App Router, TypeScript, Tailwind CSS, `src/`). Ainda
+faltam as fases 1 em diante (tokens de design, modelo de dados, UI,
+páginas, conteúdo real, deploy) — ver `PLANO_IMPLEMENTACAO.md` para o
+detalhamento fase a fase.
 
 - `PRD.md` — requisitos completos e aprovados (arquitetura, modelo de
   dados, escopo, critérios de sucesso). Leia-o antes de qualquer trabalho
@@ -14,7 +19,7 @@ código-fonte. O que existe hoje:
 - Mockup de direção visual aprovado (Artifact):
   https://claude.ai/artifact/KpN7xX83i3ijKvUTafMmKR
 
-## Comandos esperados (após o scaffold inicial com `create-next-app`)
+## Comandos
 
 - `npm run dev` — servidor de desenvolvimento local.
 - `npm run build` — build de produção (SSG + ISR); é este comando que
