@@ -1,1 +1,32 @@
 @import "tailwindcss";
+
+/* Tokens de cor do dossiê técnico — tema único, dark. */
+@theme {
+  --color-ink: #15130f;
+  --color-surface: #201d18;
+  --color-surface-2: #2a2520;
+  --color-line: #3a352c;
+  --color-paper: #f3ede1;
+  --color-muted: #a69c8a;
+  --color-signal: #ff5c1a;
+  --color-signal-dim: #c94716;
+}
+
+/* Famílias de fonte carregadas via next/font em layout.tsx (evita layout
+   shift); aqui só mapeamos as variáveis geradas para os nomes de token
+   usados no resto do projeto (font-display / font-body / font-mono). */
+@theme inline {
+  --font-display: var(--font-fraunces);
+  --font-body: var(--font-plex-sans);
+  --font-mono: var(--font-plex-mono);
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-body);
+}
