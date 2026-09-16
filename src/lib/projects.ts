@@ -89,3 +89,20 @@ export async function getAllProjects(
   const enriched = await Promise.all(curated.map(enrichWithGithub));
   return enriched.sort((a, b) => a.order - b.order);
 }
+
+/** Slugs de todos os projetos curados — usada por `generateStaticParams`. */
+export function getCuratedProjectSlugs(
+  dir: string = DEFAULT_PROJECTS_DIR,
+): string[] {
+  return getAllCuratedProjects(dir).map((project) => project.slug);
+}
+
+/** Busca um único projeto pelo slug, já enriquecido com dados do GitHub. */
+export async function getProjectBySlug(
+  slug: string,
+  dir: string = DEFAULT_PROJECTS_DIR,
+): Promise<Project | null> {
+  const curated = getAllCuratedProjects(dir).find((project) => project.slug === slug);
+  if (!curated) return null;
+  return enrichWithGithub(curated);
+}

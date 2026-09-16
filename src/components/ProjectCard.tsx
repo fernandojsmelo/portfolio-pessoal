@@ -11,7 +11,9 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
     <article className="flex flex-col gap-3.5 bg-surface p-6 transition-colors hover:bg-surface-2">
       <div className="flex items-baseline justify-between gap-2.5">
         <h3 className="font-display text-xl font-semibold tracking-tight text-paper">
-          {project.title}
+          <Link href={`/projetos/${project.slug}`} className="transition-colors hover:text-signal">
+            {project.title}
+          </Link>
         </h3>
         <span className="font-mono text-[0.7rem] tracking-wide text-signal">
           SPEC. {specNo}
@@ -32,14 +34,14 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
             ? `★ ${project.github.stars} · atualizado ${formatRelativeDate(project.github.lastUpdated)}`
             : null}
         </span>
-        <Link
+        <a
           href={`https://github.com/${project.repo}`}
           target="_blank"
           rel="noreferrer"
           className="shrink-0 text-signal hover:underline"
         >
           Repositório →
-        </Link>
+        </a>
       </div>
     </article>
   );

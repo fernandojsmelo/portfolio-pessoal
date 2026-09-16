@@ -3,6 +3,8 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import {
   getAllCuratedProjects,
   getAllProjects,
+  getCuratedProjectSlugs,
+  getProjectBySlug,
   parseProjectMarkdown,
 } from "./projects";
 
@@ -106,5 +108,44 @@ describe("getAllProjects", () => {
       // os dados curados continuam presentes mesmo sem os da API
       expect(project.title).toBeTruthy();
     }
+  });
+});
+
+describe("getCuratedProjectSlugs", () => {
+  it("retorna os slugs de todos os projetos curados", () => {
+    expect(getCuratedProjectSlugs(FIXTURES_DIR)).toEqual(["exemplo-b", "exemplo-a"]);
+  });
+});
+
+describe("getProjectBySlug", () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+    vi.unstubAllGlobals();
+  });
+
+  it("retorna o projeto enriquecido quando o slug existe", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue({
+        ok: true,
+        json: async () => ({
+          stargazers_count: 5,
+          language: "Rust",
+          pushed_at: "2026-09-01T00:00:00Z",
+          open_issues_count: 1,
+        }),
+      }),
+    );
+
+    const project = await getProjectBySlug("exemplo-b", FIXTURES_DIR);
+
+    expect(project?.title).toBe("Projeto Exemplo B");
+    expect(project?.github?.stars).toBe(5);
+  });
+
+  it("retorna null quando o slug não existe", async () => {
+    const project = await getProjectBySlug("nao-existe", FIXTURES_DIR);
+
+    expect(project).toBeNull();
   });
 });
